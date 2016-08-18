@@ -28,3 +28,7 @@ endfunction
 nnoremap com :call ToggleMultibyte()<CR>
 nnoremap [om :setlocal formatoptions+=mB<CR>
 nnoremap ]om :setlocal formatoptions-=mB<CR>
+
+nnoremap <expr> cok &showbreak == '' ? ':set showbreak=\\<CR>' : ':set showbreak=<CR>'
+nnoremap [ok :set showbreak=\\
+nnoremap ]ok :set showbreak=
