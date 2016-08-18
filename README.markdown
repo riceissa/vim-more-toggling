@@ -8,4 +8,8 @@ Currently it has:
   * The `m` family of toggles, `[om`, `]om`, and `com`, which affect multi-byte
     formatting options
 
+## License
+
+Distributed under the same terms as Vim itself. See `:help license`.
+
 [un]: https://github.com/tpope/vim-unimpaired
