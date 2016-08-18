@@ -1,5 +1,5 @@
 function! ToggleSyntax()
-    " See :h syntax for the code
+    " See :help syntax for the code
     if exists("g:syntax_on")
         syntax off
     else
@@ -9,6 +9,9 @@ endfunction
 nnoremap <silent> coy :call ToggleSyntax()<CR>
 nnoremap <silent> [oy :syntax enable<CR>
 nnoremap <silent> ]oy :syntax off<CR>
+" See also https://github.com/tpope/vim-unimpaired/pull/114/files which does
+" buffer-local syntax toggling. It might make sense to defer to that and use
+" [oY , ]oY , and coY here instead.
 
 " Useful for when working with CJK files
 function! ToggleMultibyte()
