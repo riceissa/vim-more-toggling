@@ -1,0 +1,16 @@
+*more-toggling.txt* More unimpaired-like toggling
+
+INTRODUCTION                                    *more-toggling*
+
+This plugin provides more toggling mappings that are similar to those in
+|unimpaired|.
+
+OPTION TOGGLING                                 *more-toggling-toggling*
+
+On	Off	Toggle	Option
+*[ok*	*]ok*	*cok*	'showbreak'
+*[om*	*]om*	*com*	multi-byte support (|formatoptions|+=mB and
+			|spelllang|+=cjk)
+*[oy*	*oy*	*coy*	:syntax enable or :syntax off (see |:syntax-enable|)
+
+ vim:tw=78 et ft=help norl:

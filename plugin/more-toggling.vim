@@ -16,18 +16,16 @@ nnoremap <silent> ]oy :syntax off<CR>
 " Useful for when working with CJK files
 function! ToggleMultibyte()
     if &formatoptions =~ 'm'
-        setlocal formatoptions-=mB
+        setlocal formatoptions-=mB | setlocal spelllang+=cjk
         echom ":setlocal formatoptions-=mB"
     else
-        setlocal formatoptions+=mB
+        setlocal formatoptions+=mB | setlocal spellang-=cjk
         echom ":setlocal formatoptions+=mB"
     endif
 endfunction
-" This is chosen to work as in vim-unimpaired. I should add the on and off
-" versions as well at some point.
 nnoremap com :call ToggleMultibyte()<CR>
-nnoremap [om :setlocal formatoptions+=mB<CR>
-nnoremap ]om :setlocal formatoptions-=mB<CR>
+nnoremap [om :setlocal formatoptions+=mB <Bar> setlocal spelllang+=cjk<CR>
+nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
 
 nnoremap <expr> cok &showbreak == '' ? ':set showbreak=\\<CR>' : ':set showbreak=<CR>'
 nnoremap [ok :set showbreak=\\<CR>
