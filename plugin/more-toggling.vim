@@ -19,7 +19,7 @@ function! ToggleMultibyte()
         setlocal formatoptions-=mB | setlocal spelllang+=cjk
         echom ":setlocal formatoptions-=mB"
     else
-        setlocal formatoptions+=mB | setlocal spellang-=cjk
+        setlocal formatoptions+=mB | setlocal spelllang-=cjk
         echom ":setlocal formatoptions+=mB"
     endif
 endfunction
