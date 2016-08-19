@@ -16,11 +16,11 @@ nnoremap <silent> ]oy :syntax off<CR>
 " Useful for when working with CJK files
 function! ToggleMultibyte()
     if &formatoptions =~ 'm'
-        setlocal formatoptions-=mB | setlocal spelllang+=cjk
-        echom ":setlocal formatoptions-=mB | setlocal spelllang+=cjk"
+        setlocal formatoptions-=mB | setlocal spelllang-=cjk
+        echom ":setlocal formatoptions-=mB | setlocal spelllang-=cjk"
     else
-        setlocal formatoptions+=mB | setlocal spelllang-=cjk
-        echom ":setlocal formatoptions+=mB | setlocal spelllang-=cjk"
+        setlocal formatoptions+=mB | setlocal spelllang+=cjk
+        echom ":setlocal formatoptions+=mB | setlocal spelllang+=cjk"
     endif
 endfunction
 nnoremap com :call ToggleMultibyte()<CR>
