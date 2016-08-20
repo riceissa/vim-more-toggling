@@ -11,12 +11,14 @@ function! ToggleSyntax()
     syntax enable
   endif
 endfunction
-nnoremap <silent> coy :call ToggleSyntax()<CR>
-nnoremap <silent> [oy :syntax enable<CR>
-nnoremap <silent> ]oy :syntax off<CR>
-" See also https://github.com/tpope/vim-unimpaired/pull/114/files which does
-" buffer-local syntax toggling. It might make sense to defer to that and use
-" [oY , ]oY , and coY here instead.
+nnoremap <silent> coY :call ToggleSyntax()<CR>
+nnoremap <silent> [oY :syntax enable<CR>
+nnoremap <silent> ]oY :syntax off<CR>
+" From https://github.com/tpope/vim-unimpaired/pull/114/files which does
+" buffer-local syntax toggling.
+nnoremap [oy :setlocal syntax=ON<CR>
+nnoremap ]oy :setlocal syntax=OFF<CR>
+nnoremap coy :setlocal syntax=<C-R>=&l:syntax ==# 'OFF' ? 'ON' : 'OFF'<CR><CR>
 
 " Useful for when working with CJK files
 function! ToggleMultibyte()
