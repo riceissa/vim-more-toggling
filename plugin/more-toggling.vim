@@ -37,3 +37,17 @@ nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
 nnoremap <expr> cok &showbreak == '' ? ':set showbreak=\\<CR>' : ':set showbreak=<CR>'
 nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
+
+function! ToggleTextwidth(default_tw)
+  if &textwidth > 0
+    let b:save_tw = &textwidth
+    setlocal textwidth=0
+  else
+    if !exists('b:save_tw')
+      b:save_tw = a:default_tw
+    endif
+    exe 'setlocal textwidth=' . b:save_tw
+    echom ":setlocal textwidth=" . b:save_tw
+  endif
+endfunction
+nnoremap cot :call ToggleTextwidth(79)<CR>
