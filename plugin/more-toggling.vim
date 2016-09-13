@@ -42,6 +42,7 @@ function! ToggleTextwidth(default_tw)
   if &textwidth > 0
     let b:save_tw = &textwidth
     setlocal textwidth=0
+    echom ":setlocal textwidth=0"
   else
     if !exists('b:save_tw')
       b:save_tw = a:default_tw
