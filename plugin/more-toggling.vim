@@ -59,3 +59,23 @@ function! ToggleTextwidth(default_tw)
 endfunction
 " TODO add maps for [ot and ]ot
 nnoremap cot :call ToggleTextwidth(79)<CR>
+
+" Sample usage
+"       ]ot     turn tw=0
+"       80]ot   no range allowed when turning off
+"       [ot     turn tw on, to saved value, or if none, then 79
+"       80[ot   turn tw=80
+"       cot     toggle tw, so on to saved value or 79 if off, and to 0 if on
+"
+" What should be the value of 'textwidth' after the following sequences? Each
+" arrow "->" below separates a command. So ":set tw=72 -> cot" means a
+" ":set tw=72" command followed by a "cot" in normal mode, not the
+" command-line mode command ":set tw=72 -> cot", which would result in
+" an error.
+"       :set tw=72 -> 80[ot                             80
+"       :set tw=72 -> cot -> cot                        72
+"       :set tw=0 -> cot                                79
+"       :set tw=72 -> cot -> 80cot
+"       :set tw=0 -> cot -> 80cot
+"       :set tw=72 -> :set tw=0 -> cot                  79
+"       :set tw=72 -> ]ot -> cot
