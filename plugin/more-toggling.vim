@@ -72,10 +72,15 @@ nnoremap cot :call ToggleTextwidth(79)<CR>
 " ":set tw=72" command followed by a "cot" in normal mode, not the
 " command-line mode command ":set tw=72 -> cot", which would result in
 " an error.
-"       :set tw=72 -> 80[ot                             80
-"       :set tw=72 -> cot -> cot                        72
-"       :set tw=0 -> cot                                79
-"       :set tw=72 -> cot -> 80cot
-"       :set tw=0 -> cot -> 80cot
-"       :set tw=72 -> :set tw=0 -> cot                  79
-"       :set tw=72 -> ]ot -> cot
+"       :set tw=72 -> 80[ot				80
+"       :set tw=72 -> cot -> cot			72
+"       :set tw=0 -> cot				79
+"       :set tw=72 -> cot -> 80cot			80
+"       " Doing 80cot doesn't make sense if a count is given, so it acts
+"       " like 80[ot instead.
+"       :set tw=0 -> cot -> 80cot			80
+"       :set tw=72 -> :set tw=0 -> cot			79
+"       :set tw=72 -> ]ot -> cot			72
+"       :set tw=0 -> [ot -> 
+"       :set tw=0 -> 72[ot -> :set tw=0 -> cot		79 or 72?
+"       :
