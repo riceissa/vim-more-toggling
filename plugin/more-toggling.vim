@@ -44,11 +44,18 @@ function! ToggleTextwidth(default_tw)
     setlocal textwidth=0
     echom ":setlocal textwidth=0"
   else
+    " Actually v:count should probably override even if b:save_tw doesn't
+    " exist.
     if !exists('b:save_tw')
-      b:save_tw = a:default_tw
+      if v:count > 0
+        b:save_tw = v:count
+      else
+        b:save_tw = a:default_tw
+      endif
     endif
     exe 'setlocal textwidth=' . b:save_tw
     echom ":setlocal textwidth=" . b:save_tw
   endif
 endfunction
+" TODO add maps for [ot and ]ot
 nnoremap cot :call ToggleTextwidth(79)<CR>
