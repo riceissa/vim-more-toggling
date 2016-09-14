@@ -38,7 +38,31 @@ nnoremap <expr> cok &showbreak == '' ? ':set showbreak=\\<CR>' : ':set showbreak
 nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
 
-function! ToggleTextwidth(default_tw)
+function! TextwidthOn(default_tw, count)
+  if a:count > 0
+    exe 'setlocal textwidth=' . a:count
+    echom 'setlocal textwidth=' . a:count
+  elseif exists('b:save_tw')
+    exe 'setlocal textwidth=' . b:save_tw
+    echom ":setlocal textwidth=" . b:save_tw
+  elseif &textwidth > 0
+    exe 'setlocal textwidth=' . &textwidth
+    echom ":setlocal textwidth=" . &textwidth
+  else
+    exe 'setlocal textwidth=' . a:default_tw
+    echom ":setlocal textwidth=" . a:default_tw
+  endif
+endfunction
+
+function! TextwidthOff(default_tw)
+  if &textwidth > 0
+    let b:save_tw = &textwidth
+  endif
+  exe 'setlocal textwidth=0'
+  echom ":setlocal textwidth=0"
+endfunction
+
+function! ToggleTextwidth(default_tw, count)
   if &textwidth > 0
     let b:save_tw = &textwidth
     setlocal textwidth=0
@@ -58,7 +82,9 @@ function! ToggleTextwidth(default_tw)
   endif
 endfunction
 " TODO add maps for [ot and ]ot
-nnoremap cot :call ToggleTextwidth(79)<CR>
+nnoremap cot :<C-U>call ToggleTextwidth(79, v:count)<CR>
+nnoremap [ot :<C-U>call TextwidthOn(79, v:count)<CR>
+nnoremap ]ot :<C-U>call TextwidthOff(79)<CR>
 
 " Sample usage
 "       ]ot     turn tw=0
@@ -83,4 +109,4 @@ nnoremap cot :call ToggleTextwidth(79)<CR>
 "       :set tw=72 -> ]ot -> cot			72
 "       :set tw=0 -> [ot -> 
 "       :set tw=0 -> 72[ot -> :set tw=0 -> cot		79 or 72?
-"       :
+"       :set tw=72 -> ]ot -> :set tw=0 -> cot		72
