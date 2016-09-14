@@ -54,7 +54,7 @@ function! TextwidthOn(default_tw, count)
   endif
 endfunction
 
-function! TextwidthOff(default_tw)
+function! TextwidthOff()
   if &textwidth > 0
     let b:save_tw = &textwidth
   endif
@@ -72,4 +72,4 @@ endfunction
 
 nnoremap cot :<C-U>call ToggleTextwidth(79, v:count)<CR>
 nnoremap [ot :<C-U>call TextwidthOn(79, v:count)<CR>
-nnoremap ]ot :<C-U>call TextwidthOff(79)<CR>
+nnoremap ]ot :<C-U>call TextwidthOff()<CR>
