@@ -30,8 +30,7 @@ function! ToggleMultibyte()
     echom ":setlocal formatoptions+=mB | setlocal spelllang+=cjk"
   endif
 endfunction
-" nnoremap com :call ToggleMultibyte()<CR>
-nnoremap com :<C-R>=(&formatoptions =~# "m") ? 'setlocal formatoptions-=mB <bar> setlocal spelllang-=cjk' : 'setlocal formatoptions+=mB <bar> setlocal spelllang+=cjk'<CR><CR><CR>
+nnoremap com :call ToggleMultibyte()<CR>
 nnoremap [om :setlocal formatoptions+=mB <Bar> setlocal spelllang+=cjk<CR>
 nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
 
