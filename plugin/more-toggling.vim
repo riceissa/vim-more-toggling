@@ -31,7 +31,7 @@ function! ToggleMultibyte()
   endif
 endfunction
 " nnoremap com :call ToggleMultibyte()<CR>
-nnoremap com :setlocal <C-R>=(&formatoptions =~# "m") ? 'formatoptions-=mB | setlocal spelllang-=cjk' : 'formatoptions+=mB | setlocal spelllang+=cjk'
+nnoremap com :setlocal <C-R>=(&formatoptions =~# "m") ? 'formatoptions-=mB | setlocal spelllang-=cjk' : 'formatoptions+=mB | setlocal spelllang+=cjk'<CR><CR>
 nnoremap [om :setlocal formatoptions+=mB <Bar> setlocal spelllang+=cjk<CR>
 nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
 
