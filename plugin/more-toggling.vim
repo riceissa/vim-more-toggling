@@ -64,7 +64,7 @@ endfunction
 
 function! ToggleTextwidth(default_tw, count)
   if &textwidth > 0
-    call TextwidthOff(a:default_tw)
+    call TextwidthOff()
   else
     call TextwidthOn(a:default_tw, a:count)
   endif
