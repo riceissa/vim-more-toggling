@@ -24,8 +24,9 @@ things about this:
   * [ot accepts a count to set the textwidth to the value of the count
   * cot accepts a count if 'textwidth' is 0
   * Whenever 'textwidth' is turned off (set to 0) using ]ot or cot, its value
-    is stored as the buffer variable b:save_tw, which has second highest
-    precedence after manually entering in a count
+    is stored as the buffer variable b:save_tw, which has third highest
+    precedence after manually entering in a count and the current non-zero
+    'textwidth' value when turning on 'textwidth' again
 
 Some effort was made to make the use of these toggles intuitive. Here are some
 sequences of switches that show how 'textwidth' will be modified. Each arrow
