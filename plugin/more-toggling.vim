@@ -64,24 +64,32 @@ endfunction
 
 function! ToggleTextwidth(default_tw, count)
   if &textwidth > 0
-    let b:save_tw = &textwidth
-    setlocal textwidth=0
-    echom ":setlocal textwidth=0"
+    call TextwidthOff(default_tw)
   else
-    " Actually v:count should probably override even if b:save_tw doesn't
-    " exist.
-    if !exists('b:save_tw')
-      if v:count > 0
-        b:save_tw = v:count
-      else
-        b:save_tw = a:default_tw
-      endif
-    endif
-    exe 'setlocal textwidth=' . b:save_tw
-    echom ":setlocal textwidth=" . b:save_tw
+    call TextwidthOn(default_tw, count)
   endif
 endfunction
-" TODO add maps for [ot and ]ot
+
+" function! ToggleTextwidth(default_tw, count)
+"   if &textwidth > 0
+"     let b:save_tw = &textwidth
+"     setlocal textwidth=0
+"     echom ":setlocal textwidth=0"
+"   else
+"     " Actually v:count should probably override even if b:save_tw doesn't
+"     " exist.
+"     if !exists('b:save_tw')
+"       if v:count > 0
+"         b:save_tw = v:count
+"       else
+"         b:save_tw = a:default_tw
+"       endif
+"     endif
+"     exe 'setlocal textwidth=' . b:save_tw
+"     echom ":setlocal textwidth=" . b:save_tw
+"   endif
+" endfunction
+
 nnoremap cot :<C-U>call ToggleTextwidth(79, v:count)<CR>
 nnoremap [ot :<C-U>call TextwidthOn(79, v:count)<CR>
 nnoremap ]ot :<C-U>call TextwidthOff(79)<CR>
