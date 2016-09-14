@@ -106,13 +106,15 @@ nnoremap ]ot :<C-U>call TextwidthOff(79)<CR>
 " ":set tw=72" command followed by a "cot" in normal mode, not the
 " command-line mode command ":set tw=72 -> cot", which would result in
 " an error.
+"       Sequence                                        &tw,b:save_tw
 "       :set tw=72 -> 80[ot				80
 "       :set tw=72 -> cot -> cot			72
 "       :set tw=0 -> cot				79
 "       :set tw=72 -> cot -> 80cot			80
-"       " Doing 80cot doesn't make sense if a count is given, so it acts
-"       " like 80[ot instead.
-"       :set tw=0 -> cot -> 80cot			80
+"       " Doing 80cot here doesn't make sense if a count is given,
+"       " because we're turning textwidth off. So ignore the count. Here
+"       " we still store the 79.
+"       :set tw=0 -> cot -> 80cot			0,79
 "       :set tw=72 -> :set tw=0 -> cot			79
 "       :set tw=72 -> ]ot -> cot			72
 "       :set tw=0 -> [ot -> 
