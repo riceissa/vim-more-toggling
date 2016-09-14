@@ -42,12 +42,12 @@ function! TextwidthOn(default_tw, count)
   if a:count > 0
     exe 'setlocal textwidth=' . a:count
     echom 'setlocal textwidth=' . a:count
-  elseif exists('b:save_tw')
-    exe 'setlocal textwidth=' . b:save_tw
-    echom ":setlocal textwidth=" . b:save_tw
   elseif &textwidth > 0
     exe 'setlocal textwidth=' . &textwidth
     echom ":setlocal textwidth=" . &textwidth
+  elseif exists('b:save_tw')
+    exe 'setlocal textwidth=' . b:save_tw
+    echom ":setlocal textwidth=" . b:save_tw
   else
     exe 'setlocal textwidth=' . a:default_tw
     echom ":setlocal textwidth=" . a:default_tw

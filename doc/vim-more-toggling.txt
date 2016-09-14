@@ -11,7 +11,49 @@ On	Off	Toggle	Option
 *[ok*	*]ok*	*cok*	'showbreak'
 *[om*	*]om*	*com*	multi-byte support (|formatoptions|+=mB and
 			|spelllang|+=cjk)
+*[ot*	*]ot*	*cot*	'textwidth'
 *[oy*	*]oy*	*coy*	'syntax'
 *[oY*	*oY*	*coY*	:syntax enable or :syntax off (see |:syntax-enable|)
+
+TEXTWIDTH TOGGLING                              *more-toggling-textwidth*
+
+The 'textwidth' toggling is a little more complicated than the others, because
+rather than storing an "on" or "off" value, it stores an integer. Some neat
+things about this:
+
+  * [ot accepts a count to set the textwidth to the value of the count
+  * cot accepts a count if 'textwidth' is 0
+  * Whenever 'textwidth' is turned off (set to 0) using ]ot or cot, its value
+    is stored as the buffer variable b:save_tw, which has second highest
+    precedence after manually entering in a count
+
+Some effort was made to make the use of these toggles intuitive. Here are some
+sequences of switches that show how 'textwidth' will be modified. Each arrow
+"->" below separates a command. So ":set tw=72 -> cot" means a ":set tw=72"
+command followed by a "cot" in normal mode, not the command-line mode command
+":set tw=72 -> cot", which would result in an error. Some comments are given
+in lines starting with '"', as in Vimscript. Note also that each line in the
+table is executed in a sequence in a new session of Vim, so one where
+b:save_tw does not yet exist. >
+
+  Sequence					&tw,b:save_tw
+  " b:save_tw will not exist since textwidth has not been turned off using the
+  " commands in this plugin. It is shown as "-" here but exists('b:save_tw')
+  " will return 0.
+  :set tw=72 -> 80[ot				80,-
+  :set tw=72 -> cot -> cot			72,72
+  :set tw=0 -> cot				79,-
+  :set tw=72 -> cot -> 80cot			80,72
+  :set tw=72 -> cot -> 80cot -> [ot		72,72
+  " Doing 80cot here doesn't make sense if a count is given,
+  " because we're turning textwidth off. So ignore the count. Here
+  " we still store the 79.
+  :set tw=0 -> cot -> 80cot			0,79
+  :set tw=72 -> :set tw=0 -> cot		79
+  :set tw=72 -> ]ot -> cot			72
+  :set tw=0 -> [ot -> 
+  :set tw=0 -> 72[ot -> :set tw=0 -> cot	79 or 72?
+  :set tw=72 -> ]ot -> :set tw=0 -> cot		72
+<
 
  vim:tw=78 et ft=help norl:
