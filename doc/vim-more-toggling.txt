@@ -44,16 +44,18 @@ b:save_tw does not yet exist. >
   :set tw=72 -> cot -> cot			72,72
   :set tw=0 -> cot				79,-
   :set tw=72 -> cot -> 80cot			80,72
-  :set tw=72 -> cot -> 80cot -> [ot		72,72
-  " Doing 80cot here doesn't make sense if a count is given,
-  " because we're turning textwidth off. So ignore the count. Here
-  " we still store the 79.
+  :set tw=72 -> cot -> 80cot -> [ot		80,72
+  " Doing 80cot here doesn't make sense if a count is given, because we're
+  " turning textwidth off. So ignore the count. Here we still store the 79,
+  " which is the value used when no textwidth value can be discerned from the
+  " filetype.
   :set tw=0 -> cot -> 80cot			0,79
-  :set tw=72 -> :set tw=0 -> cot		79
-  :set tw=72 -> ]ot -> cot			72
-  :set tw=0 -> [ot -> 
-  :set tw=0 -> 72[ot -> :set tw=0 -> cot	79 or 72?
-  :set tw=72 -> ]ot -> :set tw=0 -> cot		72
+  " The value is only saved when turning off via the commands in this plugin.
+  :set tw=72 -> :set tw=0 -> cot		79,-
+  :set tw=0 -> 72[ot -> :set tw=0 -> cot	79,-
+  :set tw=72 -> ]ot -> cot			72,72
+  " Using :set tw=0 cannot "wipe out" the value of b:save_tw.
+  :set tw=72 -> ]ot -> :set tw=0 -> cot		72,72
 <
 
  vim:tw=78 et ft=help norl:
