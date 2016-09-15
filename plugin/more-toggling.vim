@@ -55,11 +55,13 @@ function! TextwidthOn(default_tw, count)
 endfunction
 
 function! TextwidthOff()
+  let tw_mes = ""
   if &textwidth > 0
     let b:save_tw = &textwidth
+    let tw_mes = " | let b:save_tw=" . b:save_tw
   endif
   exe 'setlocal textwidth=0'
-  echom ":setlocal textwidth=0"
+  echom ":setlocal textwidth=0" . tw_mes
 endfunction
 
 function! ToggleTextwidth(default_tw, count)
