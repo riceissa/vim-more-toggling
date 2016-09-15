@@ -15,6 +15,7 @@ On	Off	Toggle	Option
 *[oy*	*]oy*	*coy*	'syntax'
 *[oY*	*oY*	*coY*	:syntax enable or :syntax off (see |:syntax-enable|)
 
+                                                *b:save_tw*
 TEXTWIDTH TOGGLING                              *more-toggling-textwidth*
 
 The 'textwidth' toggling is a little more complicated than the others, because
@@ -24,7 +25,7 @@ things about this:
   * [ot accepts a count to set the textwidth to the value of the count
   * cot accepts a count if 'textwidth' is 0
   * Whenever 'textwidth' is turned off (set to 0) using ]ot or cot, its value
-    is stored as the buffer variable b:save_tw, which has third highest
+    is stored as the buffer variable |b:save_tw|, which has third highest
     precedence after manually entering in a count and the current non-zero
     'textwidth' value when turning on 'textwidth' again
 
@@ -35,7 +36,7 @@ command followed by a "cot" in normal mode, not the command-line mode command
 ":set tw=72 -> cot", which would result in an error. Some comments are given
 in lines starting with '"', as in Vimscript. Note also that each line in the
 table is executed in a sequence in a new session of Vim, so one where
-b:save_tw does not yet exist. >
+|b:save_tw| does not yet exist. >
 
   Sequence					&tw,b:save_tw
   " b:save_tw will not exist since textwidth has not been turned off using the
