@@ -59,4 +59,4 @@ b:save_tw does not yet exist. >
   :set tw=72 -> ]ot -> :set tw=0 -> cot		72,72
 <
 
- vim:tw=78 et ft=help norl:
+ vim:tw=78:et:ts=8:ft=help:norl:
