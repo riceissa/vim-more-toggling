@@ -26,7 +26,7 @@ nnoremap [ot :<C-U>setlocal textwidth=<C-R>=v:count > 0
       \ ? v:count
       \ : &textwidth > 0
       \         ? &textwidth
-      \         : exists("b:tw_saved")
+      \         : exists("b:tw_saved") && b:tw_saved > 0
       \                 ? b:tw_saved
       \                 : 79<CR> <Bar> let b:tw_saved = &textwidth<CR>
 
