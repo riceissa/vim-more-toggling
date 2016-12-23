@@ -3,8 +3,8 @@ if exists('g:loaded_more_toggling')
 endif
 let g:loaded_more_toggling = 1
 
-nnoremap <silent> [oY :syntax enable<CR>
-nnoremap <silent> ]oY :syntax off<CR>
+nnoremap [oY :syntax enable<CR>
+nnoremap ]oY :syntax off<CR>
 nnoremap coY :<C-R>=exists("g:syntax_on") ? 'syntax off' : 'syntax enable'<CR><CR>
 
 " From https://github.com/tpope/vim-unimpaired/pull/114/files which does
