@@ -30,10 +30,12 @@ nnoremap [ot :<C-U>setlocal textwidth=<C-R>=v:count > 0
       \                 ? b:tw_saved
       \                 : 79<CR> <Bar> let b:tw_saved = &textwidth<CR>
 
-nnoremap ]ot :<C-U>setlocal textwidth=0 <Bar> let b:tw_saved=<C-R>=&textwidth > 0
-      \ ? &textwidth
-      \ : exists("b:tw_saved") && b:tw_saved > 0
-      \         ? b:tw_saved
-      \         : 79<CR><CR>
+nnoremap ]ot :<C-U>setlocal textwidth=0 <Bar> let b:tw_saved=<C-R>=v:count > 0
+      \ ? v:count
+      \ : &textwidth > 0
+      \         ? &textwidth
+      \         : exists("b:tw_saved") && b:tw_saved > 0
+      \                 ? b:tw_saved
+      \                 : 79<CR><CR>
 
 nmap <expr> cot &textwidth == 0 ? '[ot' : ']ot'
