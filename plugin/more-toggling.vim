@@ -22,6 +22,9 @@ nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
 nnoremap cok :set showbreak=<C-R>=(&showbreak == '') ? '\\' : ''<CR><CR>
 
+" nnoremap [ot :setlocal textwidth=<C-R>=b:save_tw<CR><CR>
+" nnoremap ]ot :setlocal textwidth=0<C-R>=&textwidth > 0 <Bar><Bar> (exists("b:save_tw") && b:save_tw > 0) ? ' <Bar> let b:save_tw = ' . &textwidth : ' <Bar> let b:save_tw = 79'<CR><CR>
+
 function! TextwidthOn(default_tw, count)
   if a:count > 0
     exe 'setlocal textwidth=' . a:count
@@ -38,15 +41,19 @@ function! TextwidthOn(default_tw, count)
   endif
 endfunction
 
-function! TextwidthOff()
-  let tw_mes = ""
-  if &textwidth > 0
-    let b:save_tw = &textwidth
-    let tw_mes = " | let b:save_tw=" . b:save_tw
-  endif
-  exe 'setlocal textwidth=0'
-  echom ":setlocal textwidth=0" . tw_mes
-endfunction
+nnoremap [ot :setlocal textwidth=<C-R>=v:count > 0
+      \ ? v:count
+      \ : &textwidth > 0
+      \         ? &textwidth
+      \         : exists("b:save_tw")
+      \                 ? b:save_tw
+      \                 : 79<CR><CR>
+
+nnoremap ]ot :setlocal textwidth=0 <Bar> let b:save_tw=<C-R>=&textwidth > 0
+      \ ? &textwidth
+      \ : exists("b:save_tw") && b:save_tw > 0
+      \         ? b:save_tw
+      \         : 79<CR><CR>
 
 function! ToggleTextwidth(default_tw, count)
   if &textwidth > 0
@@ -56,6 +63,6 @@ function! ToggleTextwidth(default_tw, count)
   endif
 endfunction
 
-nnoremap cot :<C-U>call ToggleTextwidth(79, v:count)<CR>
-nnoremap [ot :<C-U>call TextwidthOn(79, v:count)<CR>
-nnoremap ]ot :<C-U>call TextwidthOff()<CR>
+" nnoremap cot :<C-U>call ToggleTextwidth(79, v:count)<CR>
+" nnoremap [ot :<C-U>call TextwidthOn(79, v:count)<CR>
+" nnoremap ]ot :<C-U>call TextwidthOff()<CR>
