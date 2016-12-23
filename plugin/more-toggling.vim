@@ -14,9 +14,9 @@ nnoremap ]oy :setlocal syntax=OFF<CR>
 nnoremap coy :setlocal syntax=<C-R>=&l:syntax ==# 'OFF' ? 'ON' : 'OFF'<CR><CR>
 
 " Useful for when working with CJK files
-nnoremap com :setlocal <C-R>=(&formatoptions =~# 'm') ? 'formatoptions-=mB spelllang-=cjk' : 'formatoptions+=mB spelllang+=cjk'<CR><CR>
 nnoremap [om :setlocal formatoptions+=mB spelllang+=cjk<CR>
 nnoremap ]om :setlocal formatoptions-=mB spelllang-=cjk<CR>
+nnoremap com :setlocal <C-R>=(&formatoptions =~# 'm') ? 'formatoptions-=mB spelllang-=cjk' : 'formatoptions+=mB spelllang+=cjk'<CR><CR>
 
 nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
