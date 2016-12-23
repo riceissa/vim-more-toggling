@@ -19,45 +19,18 @@ On	Off	Toggle	Option
 TEXTWIDTH TOGGLING                              *more-toggling-textwidth*
 
 The 'textwidth' toggling is a little more complicated than the others, because
-rather than storing an "on" or "off" value, it stores an integer. Some neat
-things about this:
+rather than storing an "on" or "off" value, it stores an integer. The way this
+works is:
 
-  * [ot accepts a count to set the textwidth to the value of the count
-  * cot accepts a count if 'textwidth' is 0
-  * Whenever 'textwidth' is turned off (set to 0) using ]ot or cot, its value
-    is stored as the buffer variable |b:tw_saved|, which has third highest
-    precedence after manually entering in a count and the current non-zero
-    'textwidth' value when turning on 'textwidth' again
+  * In addition to 'textwidth', we keep track of a buffer-local variable
+    called |b:tw_saved|.
+  * 'textwidth' and |b:tw_saved| will never take on distinct positive values
+    using the provided mappings; if they do through other means, the values
+    will be synced the next time one of the provided mappings is used. This
+    ensures |b:tw_saved| is a faithful stored value for 'textwidth'.
+  * [ot accepts a count to set the textwidth to the value of the count.
+  * ]ot accepts a count to set the value of |b:tw_saved|.
 
-Some effort was made to make the use of these toggles intuitive. Here are some
-sequences of switches that show how 'textwidth' will be modified. Each arrow
-"->" below separates a command. So ":set tw=72 -> cot" means a ":set tw=72"
-command followed by a "cot" in normal mode, not the command-line mode command
-":set tw=72 -> cot", which would result in an error. Some comments are given
-in lines starting with '"', as in Vimscript. Note also that each line in the
-table is executed in a sequence in a new session of Vim, so one where
-|b:tw_saved| does not yet exist. >
-
-  Sequence					&tw,b:tw_saved
-  " b:tw_saved will not exist since textwidth has not been turned off using the
-  " commands in this plugin. It is shown as "-" here but exists('b:tw_saved')
-  " will return 0.
-  :set tw=72 -> 80[ot				80,-
-  :set tw=72 -> cot -> cot			72,72
-  :set tw=0 -> cot				79,-
-  :set tw=72 -> cot -> 80cot			80,72
-  :set tw=72 -> cot -> 80cot -> [ot		80,72
-  " Doing 80cot here doesn't make sense if a count is given, because we're
-  " turning textwidth off. So ignore the count. Here we still store the 79,
-  " which is the value used when no textwidth value can be discerned from the
-  " filetype.
-  :set tw=0 -> cot -> 80cot			0,79
-  " The value is only saved when turning off via the commands in this plugin.
-  :set tw=72 -> :set tw=0 -> cot		79,-
-  :set tw=0 -> 72[ot -> :set tw=0 -> cot	79,-
-  :set tw=72 -> ]ot -> cot			72,72
-  " Using :set tw=0 cannot "wipe out" the value of b:tw_saved.
-  :set tw=72 -> ]ot -> :set tw=0 -> cot		72,72
-<
+Some effort was made to make the use of these toggles intuitive.
 
  vim:tw=78:et:ts=8:ft=help:norl:
