@@ -36,4 +36,4 @@ nnoremap ]ot :<C-U>setlocal textwidth=0 <Bar> let b:save_tw=<C-R>=&textwidth > 0
       \         ? b:save_tw
       \         : 79<CR><CR>
 
-nmap <expr> cot &textwidth == 0 ? '[ot<CR>' : ']ot<CR>'
+nmap <expr> cot &textwidth == 0 ? '[ot' : ']ot'
