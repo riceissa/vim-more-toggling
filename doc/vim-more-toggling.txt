@@ -13,7 +13,7 @@ On	Off	Toggle	Option
 			|spelllang|+=cjk)
 *[ot*	*]ot*	*cot*	'textwidth'
 *[oy*	*]oy*	*coy*	'syntax'
-*[oY*	*oY*	*coY*	:syntax enable or :syntax off (see |:syntax-enable|)
+*[oY*	*]oY*	*coY*	:syntax enable or :syntax off (see |:syntax-enable|)
 
                                                 *b:save_tw*
 TEXTWIDTH TOGGLING                              *more-toggling-textwidth*
