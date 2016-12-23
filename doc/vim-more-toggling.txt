@@ -23,13 +23,16 @@ rather than storing an "on" or "off" value, it stores an integer. The way this
 works is:
 
   * In addition to 'textwidth', we keep track of a buffer-local variable
-    called |b:tw_saved|.
+    called |b:tw_saved|; this way, if 'textwidth' is turned off (set to 0)
+    temporarily, it can be restored later.
   * 'textwidth' and |b:tw_saved| will never take on distinct positive values
     using the provided mappings; if they do through other means, the values
     will be synced the next time one of the provided mappings is used. This
     ensures |b:tw_saved| is a faithful stored value for 'textwidth'.
-  * [ot accepts a count to set the textwidth to the value of the count.
-  * ]ot accepts a count to set the value of |b:tw_saved|.
+  * [ot accepts a count to set 'textwidth' (and by extension |b:tw_saved|) to
+    the value of the count.
+  * ]ot accepts a count to set the value of |b:tw_saved|; in other words, a
+    value other than 'textwidth' can be stored.
 
 Some effort was made to make the use of these toggles intuitive.
 
