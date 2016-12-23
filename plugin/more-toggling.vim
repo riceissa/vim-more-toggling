@@ -21,18 +21,9 @@ nnoremap ]oy :setlocal syntax=OFF<CR>
 nnoremap coy :setlocal syntax=<C-R>=&l:syntax ==# 'OFF' ? 'ON' : 'OFF'<CR><CR>
 
 " Useful for when working with CJK files
-function! ToggleMultibyte()
-  if &formatoptions =~# 'm'
-    setlocal formatoptions-=mB | setlocal spelllang-=cjk
-    echom ":setlocal formatoptions-=mB | setlocal spelllang-=cjk"
-  else
-    setlocal formatoptions+=mB | setlocal spelllang+=cjk
-    echom ":setlocal formatoptions+=mB | setlocal spelllang+=cjk"
-  endif
-endfunction
-nnoremap com :call ToggleMultibyte()<CR>
-nnoremap [om :setlocal formatoptions+=mB <Bar> setlocal spelllang+=cjk<CR>
-nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
+nnoremap com :setlocal <C-R>=(&formatoptions =~# 'm') ? 'formatoptions-=mB spelllang-=cjk' : 'formatoptions+=mB spelllang+=cjk'<CR><CR>
+nnoremap [om :setlocal formatoptions+=mB spelllang+=cjk<CR>
+nnoremap ]om :setlocal formatoptions-=mB spelllang-=cjk<CR>
 
 nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
