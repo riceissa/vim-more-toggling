@@ -3,17 +3,10 @@ if exists('g:loaded_more_toggling')
 endif
 let g:loaded_more_toggling = 1
 
-function! ToggleSyntax()
-  " See :help syntax for the code
-  if exists("g:syntax_on")
-    syntax off
-  else
-    syntax enable
-  endif
-endfunction
-nnoremap <silent> coY :call ToggleSyntax()<CR>
+nnoremap coY :<C-R>=exists("g:syntax_on") ? 'syntax off' : 'syntax enable'<CR><CR>
 nnoremap <silent> [oY :syntax enable<CR>
 nnoremap <silent> ]oY :syntax off<CR>
+
 " From https://github.com/tpope/vim-unimpaired/pull/114/files which does
 " buffer-local syntax toggling.
 nnoremap [oy :setlocal syntax=ON<CR>
