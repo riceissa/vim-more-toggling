@@ -22,7 +22,7 @@ nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
 nnoremap cok :set showbreak=<C-R>=(&showbreak == '') ? '\\' : ''<CR><CR>
 
-nnoremap [ot :setlocal textwidth=<C-R>=v:count > 0
+nnoremap [ot :<C-U>setlocal textwidth=<C-R>=v:count > 0
       \ ? v:count
       \ : &textwidth > 0
       \         ? &textwidth
@@ -30,7 +30,7 @@ nnoremap [ot :setlocal textwidth=<C-R>=v:count > 0
       \                 ? b:save_tw
       \                 : 79<CR> <Bar> let b:save_tw = &textwidth<CR>
 
-nnoremap ]ot :setlocal textwidth=0 <Bar> let b:save_tw=<C-R>=&textwidth > 0
+nnoremap ]ot :<C-U>setlocal textwidth=0 <Bar> let b:save_tw=<C-R>=&textwidth > 0
       \ ? &textwidth
       \ : exists("b:save_tw") && b:save_tw > 0
       \         ? b:save_tw
