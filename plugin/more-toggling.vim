@@ -34,9 +34,9 @@ nnoremap com :call ToggleMultibyte()<CR>
 nnoremap [om :setlocal formatoptions+=mB <Bar> setlocal spelllang+=cjk<CR>
 nnoremap ]om :setlocal formatoptions-=mB <Bar> setlocal spelllang-=cjk<CR>
 
-nnoremap <expr> cok &showbreak == '' ? ':set showbreak=\\<CR>' : ':set showbreak=<CR>'
 nnoremap [ok :set showbreak=\\<CR>
 nnoremap ]ok :set showbreak=<CR>
+nnoremap cok :set showbreak=<C-R>=(&showbreak == '') ? '\\' : ''<CR><CR>
 
 function! TextwidthOn(default_tw, count)
   if a:count > 0
